@@ -1,0 +1,12 @@
+
+body{
+	font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+
+}
+
+
+hr	{
+	 border-style: thin solid #efefef;
+    border-width: 1px 0;
+    margin: 20px 0;
+}
