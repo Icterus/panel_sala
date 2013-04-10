@@ -3,9 +3,10 @@
  <head>
   <meta http-equiv='Content-type' content='text/html; charset=<?php echo APP_CHARSET ?>' />
   <meta charset='<?php echo APP_CHARSET ?>' />
-  <title>KumbiaPHP web &amp; App Framework</title>
+  <title>PSUV Falcon</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="stylesheet" type="text/css" href="/panel_sala/css/imprimir" media="print">
     <!-- Bootstrap -->
     <?php
     Tag::css('bootstrap/bootstrap');
@@ -30,6 +31,24 @@
 
 </head>
 <body>
-    <?php View::content(); ?>
+
+
+<?php View::partial('panel_sala/nav'); ?>
+
+<hr/>
+
+
+      <div class="container-fluid">
+    <div class="row-fluid">
+    <div class="span2">
+    <!--Sidebar content-->
+    </div>
+    <div class="span10">
+       <?php View::content(); ?>
+    </div>
+    </div>
+    </div>
+<hr/>
+    <?php View::partial('panel_sala/footer') ?>
 </body>
 </html>
