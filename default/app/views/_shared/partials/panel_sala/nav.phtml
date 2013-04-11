@@ -14,10 +14,15 @@
 
              <?php echo Html::link('', 'Principal'); ?>
               </li>
-              <li class="">
 
-                 <?php echo Html::link('reporte/', 'Reportes'); ?>
+             <li class="dropdown">
+                <?php echo Html::link('#', 'Reportes<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
+                    <ul class="dropdown-menu">
+                      <li><?php echo Html::link('reporte/', 'Reportes', 'tabindex="-1"'); ?></li>
+
+                    </ul>
               </li>
+
                <li class="">
 
                 <?php echo Html::link('llamadas/', 'LLamadas'); ?>
@@ -26,6 +31,11 @@
                <li class="">
 
                 <?php echo Html::link('voto/', 'Reportar Voto'); ?>
+
+              </li>
+              <li class="">
+
+                <?php echo Html::link('buscar/', 'Consultar Voto'); ?>
 
               </li>
               <li class="dropdown">
