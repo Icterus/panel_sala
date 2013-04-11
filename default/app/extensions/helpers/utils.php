@@ -82,7 +82,7 @@ class Utils {
                 if ( $opciones && $current == $last ) {
                     foreach ($arrayOpciones as $texto => $link) {
                         $link .= ( substr($link, -1, 1) == '/' ) ? '' : '/';
-                        print "\t\t<td class=\"text-center\">" . Html::link( $link . $elemento->id, $texto) . "</td>\r\n";
+                        print "\t\t<td class=\"text-center\">" . Html::link($texto, $link . $elemento->id) . "</td>\r\n";
                     }
                 }
                 if ( $current == $last ) print "\t</tr>\r\n";
