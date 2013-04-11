@@ -1,0 +1,11 @@
+
+
+    <?php echo Form::open(null, 'post', 'class="form-signin"'); ?>
+        <h2 class="form-signin-heading">Bienvenido</h2>
+        <?php View::content(); ?>
+        <?php echo Form::text('usuario.usuario',' class="input-block-level" placeholder="Usuario"'); ?>
+        <?php echo Form::pass('usuario.clave',' class="input-block-level" placeholder="Contraseña"'); ?>
+        <button class="btn btn-large btn-primary" type="submit">Ingresar</button>
+        <small><p class="muted credit">Desarrolado por  el Equipo de <a href="http://icter.us">Icter.us </a>  para el <a href="http://www.psuvfalcon.org.ve">PSUVFalcón</a></p></small>
+    <?php echo Form::close(); ?>
+

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Entrar › Panel de Salas</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de Salas">
+    <meta name="author" content="Icterus Team">
+    <!-- Bootstrap -->
+    <?php
+    Tag::css('bootstrap/bootstrap');
+    Tag::css('bootstrap/bootstrap-responsive');
+    Tag::css('font-awesome/font-awesome.min');
+    Tag::css('font-awesome/css');
+    Tag::css('login');
+    echo Html::IncludeCss();
+    ?>
+
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <?php echo Tag::js('html5shiv'); ?>
+    <![endif]-->
+    <!--[if IE 7]>
+        <?php
+        echo '<link href="' . PUBLIC_PATH . "css/font-awesome/font-awesome-ie7.min.css\" rel=\"stylesheet\" type=\"text/css\" media=\"screen\" />";
+        ?>
+    <![endif]-->
+    <?php echo Tag::js('bootstrap/jquery'); ?>
+    <?php echo Tag::js('bootstrap/bootstrap.min'); ?>
+
+    </head>
+    <body>
+
+    <!-- Container
+      ================================================== -->
+    <div class="container-fluid">
+
+        <?php View::content(); ?>
+
+    </div> <!-- /container -->
+
+    </body>
+</html>
