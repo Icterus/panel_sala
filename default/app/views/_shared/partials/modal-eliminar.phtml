@@ -1,0 +1,18 @@
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="myModalLabel">Confirme...</h3>
+    </div>
+    <div class="modal-body">
+        <p>¿Esta seguro de eliminar este elemento?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <button class="btn btn-danger">Eliminar</button>
+    </div>
+</div>
+<script type="text/javascript">
+    var link_action;
+    $('#eliminar').click(function(event){ event.preventDefault(); link_action = $(this).attr('href'); });
+    $('.btn-danger').click(function(event){ location.href = link_action; });
+</script>

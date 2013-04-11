@@ -38,7 +38,7 @@ class IndexController extends AppController
             Auth::destroy_identity();
             Session::delete('id');
             Session::delete('nivel');
-            Flash::valid("La sesión se ha cerrado correctamente.");
+            Flash::valid("Sesión Cerrada");
         }
         Router::redirect('/');
     }

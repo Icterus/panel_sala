@@ -13,6 +13,7 @@
     Tag::css('bootstrap/bootstrap-responsive');
     Tag::css('font-awesome/font-awesome.min');
     Tag::css('font-awesome/css');
+    Tag::css('app');
     echo Html::IncludeCss();
     ?>
 
@@ -28,17 +29,12 @@
     <![endif]-->
     <?php echo Tag::js('bootstrap/jquery'); ?>
     <?php echo Tag::js('bootstrap/bootstrap.min'); ?>
-
 </head>
 <body>
-
-
+<div id="wrap">
 <?php View::partial('panel_sala/nav'); ?>
 
-<hr/>
-
-
-      <div class="container-fluid">
+    <div class="container-fluid">
     <div class="row-fluid">
     <div class="span2">
     <!--Sidebar content-->
@@ -48,7 +44,7 @@
     </div>
     </div>
     </div>
-<hr/>
-    <?php View::partial('panel_sala/footer') ?>
+</div>
+<?php View::partial('panel_sala/footer') ?>
 </body>
 </html>
