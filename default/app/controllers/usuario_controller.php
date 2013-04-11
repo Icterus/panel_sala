@@ -9,12 +9,19 @@ class UsuarioController extends AppController
 
     public function index()
     {
-        Flash::info('Cuidado!!!');
         $usuarios = new Usuario();
         $this->lista = $usuarios->listarUsuarios();
     }
 
     public function nuevo() {
+
+    }
+
+    public function estado($id) {
+
+    }
+
+    public function eliminar($id) {
 
     }
 

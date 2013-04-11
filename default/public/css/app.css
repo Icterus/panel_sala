@@ -3,7 +3,7 @@ html, body { height: 100%; }
 .container > .credit { margin: 20px 0; }
 #wrap { height: auto !important; min-height: 100%; margin: 0 auto -62px; }
 #wrap > .container-fluid { padding-top: 60px; }
-.verde { color: green; }
+.verde, .Activo { color: green; }
 .azul { color: blue; }
-.rojo { color: red; }
+.rojo, .Inactivo { color: red; }
 a:hover { text-decoration: none; }

@@ -10,13 +10,14 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lista as $item): ?>
+            <?php foreach ($lista as $item): $estado = ($item->estado)?'Activo':'Inactivo';?>
             <tr>
                 <td><?php echo $item->usuario; ?></td>
                 <td><?php echo ($item->nivel)?$item->nivel:'Administrador'; ?></td>
-                <td><?php echo ($item->estado)?'Activo':'Inactivo'; ?></td>
-                <td class="text-center"><?php echo Html::link('usuario/modificar/', '<i class="icon-edit icon-large verde"></i>'); ?></td>
-                <td class="text-center"><?php echo Html::link('usuario/eliminar/', '<i class="icon-remove icon-large rojo"></i>', 'id="eliminar" data-toggle="modal" data-target="#myModal"'); ?></td>
+                <td><?php echo $estado; ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/estado/$item->usuario/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/modificar/$item->usuario/", '<i class="icon-edit icon-large verde" title="Modificar"></i>'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->usuario/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'id="eliminar" data-toggle="modal" data-target="#modalEliminar"'); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>
