@@ -24,7 +24,7 @@ class Utils {
     public static function grid($modelo, $opciones = False, $arrayOpciones = NULL){
 
         // $elementos = get_object_vars($rs);
-        print "<table class=\"table stripped table-hover table-striped\">\r\n\t<tr>\r\n";
+        print "<table class=\"table stripped table-hover table-striped\">\r\n\t<thead><tr>\r\n";
 
         if ( !is_array($modelo) ) {
             throw new Exception("Esperabamos un Array como modelo", 1);
@@ -32,8 +32,12 @@ class Utils {
 
         $model = $modelo[0];
         $method = $modelo[1];
-        $arg = @$modelo[2];
-        $rs = Load::model($model)->$method($arg);
+        array_shift($modelo); // Sacamos el modelo
+        array_shift($modelo); // Sacamos el metodo
+        $arg = @$modelo;
+
+        $classModel = Load::model($model);
+        $rs = call_user_func_array(array($classModel, $method), $arg);
 
         if ( $opciones && !is_array($arrayOpciones) ) {
             throw new Exception("Esperabamos un Array como datos", 1);
@@ -56,15 +60,16 @@ class Utils {
             $last = count($elementos) - 1;
             if ( !$header ) {
                 foreach ($elementos as $key) {
+                    $key = Util::humanize($key);
                     if ( $current == $first ) {
-                        print "\t\t<th>ID</th>\r\n";
+                        print "\t\t<th class=\"text-center\">ID</th>\r\n";
                     } else {
                         print "\t\t<th>" . ucfirst($key) . "</th>\r\n";
                     }
-                    if ( $opciones && $current == $last ) print "\t\t<th colspan=\"$numOpciones\" class=\"options\">Opciones</th>\r\n";
+                    if ( $opciones && $current == $last ) print "\t\t<th colspan=\"$numOpciones\" class=\"text-center\">Opciones</th>\r\n";
                     $current++;
                 }
-                print "\t<tr>\r\n";
+                print "\t</tr></thead><tbody>\r\n";
                 $header = True;
             }
             // Imprimir Cabecera //
@@ -82,7 +87,7 @@ class Utils {
                 if ( $opciones && $current == $last ) {
                     foreach ($arrayOpciones as $texto => $link) {
                         $link .= ( substr($link, -1, 1) == '/' ) ? '' : '/';
-                        print "\t\t<td class=\"text-center\">" . Html::link( $link . $elemento->id, $texto) . "</td>\r\n";
+                        print "\t\t<td class=\"text-center\">" . Html::link( $link.$elemento->id, $texto) . "</td>\r\n";
                     }
                 }
                 if ( $current == $last ) print "\t</tr>\r\n";
@@ -91,7 +96,7 @@ class Utils {
             $registro++;
             // Imprimir Elementos //
         }
-        print "</table>\r\n";
+        print "</tbody></table>\r\n";
 
     }
 

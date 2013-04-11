@@ -11,6 +11,20 @@ class Usuario extends ActiveRecord {
         return $this->find($columns);
     }
 
+    public function eliminarUsuario($id) {
+        if ( Auth::get('nivel') == 'pepitooo' ) {
+            if ( $this->delete($id) ) {
+                return True;
+            } else {
+                Flash::error('Error al intentar eliminar usuario');
+                return False;
+            }
+        } else {
+            Flash::error('No posee los permisos para eliminar usuarios');
+            return False;
+        }
+    }
+
 }
 
 ?>

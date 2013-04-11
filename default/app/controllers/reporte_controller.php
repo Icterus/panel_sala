@@ -10,14 +10,12 @@ class ReporteController extends AppController
 
 	}
 
-	public function centros($parroquia){
-
+	public function centros($municipio,$parroquia){
+        $this->municipio = $municipio;
 		$this->parroquia = $parroquia;
-
 	}
 
 	public function parroquias($municipio){
-
 		$this->municipio = $municipio;
 	}
 }
