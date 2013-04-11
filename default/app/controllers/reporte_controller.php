@@ -9,4 +9,9 @@ class ReporteController extends AppController
 	{
 
 	}
+
+	public function centros($municipio){
+
+		$this->municipio = $municipio;
+	}
 }
