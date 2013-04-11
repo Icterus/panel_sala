@@ -7,17 +7,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="brand" href="./index.html">PSUVFALCON</a>
+          <?php echo Html::link('index', 'PSUVFACON','class="brand"'); ?>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="">
-                <a href="./">Principal</a>
+
+             <?php echo Html::link('', 'Principal'); ?>
               </li>
               <li class="">
-                <a href="./reporte">Reportes</a>
+
+                 <?php echo Html::link('reporte/', 'Reportes'); ?>
               </li>
                <li class="">
-                <a href="./llamadas">Llamadas</a>
+
+                <?php echo Html::link('llamadas/', 'LLamadas'); ?>
+
               </li>
               <li class="pull_right">
                 <?php echo Html::link('salir/', 'Salir'); ?>
