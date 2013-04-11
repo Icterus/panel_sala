@@ -24,7 +24,7 @@ class Utils {
     public static function grid($modelo, $opciones = False, $arrayOpciones = NULL){
 
         // $elementos = get_object_vars($rs);
-        print "<table>\r\n\t<tr>\r\n";
+        print "<table class=\"table stripped table-hover table-striped\">\r\n\t<tr>\r\n";
 
         if ( !is_array($modelo) ) {
             throw new Exception("Esperabamos un Array como modelo", 1);
@@ -40,7 +40,7 @@ class Utils {
         }
 
         if (!$rs) {
-            print "\t\t<td class=\"center\">Vacío</td>\r\n\t</tr>\r\n</table>\r\n";
+            print "\t\t<td class=\"text-center\">Vacío</td>\r\n\t</tr>\r\n</table>\r\n";
             return;
         }
 
@@ -76,13 +76,13 @@ class Utils {
             foreach ($elementos as $key) {
                 if ( $current == $first ) {
                     print "\t<tr>\r\n";
-                    print "\t\t<td class=\"center\">" . $registro . "</td>\r\n";
+                    print "\t\t<td class=\"text-center\">" . $registro . "</td>\r\n";
                 }
                 if ( $key != "id" ) print "\t\t<td>" . $elemento->$key . "</td>\r\n";
                 if ( $opciones && $current == $last ) {
                     foreach ($arrayOpciones as $texto => $link) {
                         $link .= ( substr($link, -1, 1) == '/' ) ? '' : '/';
-                        print "\t\t<td class=\"center\">" . Html::link( $link . $elemento->id, $texto) . "</td>\r\n";
+                        print "\t\t<td class=\"text-center\">" . Html::link( $link . $elemento->id, $texto) . "</td>\r\n";
                     }
                 }
                 if ( $current == $last ) print "\t</tr>\r\n";
