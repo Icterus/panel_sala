@@ -15,9 +15,9 @@
                 <td><?php echo $item->usuario; ?></td>
                 <td><?php echo ($item->nivel)?$item->nivel:'Administrador'; ?></td>
                 <td><?php echo $estado; ?></td>
-                <td class="text-center"><?php echo Html::link("usuario/estado/$item->usuario/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>'); ?></td>
-                <td class="text-center"><?php echo Html::link("usuario/modificar/$item->usuario/", '<i class="icon-edit icon-large verde" title="Modificar"></i>'); ?></td>
-                <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->usuario/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'id="eliminar" data-toggle="modal" data-target="#modalEliminar"'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/estado/$item->id/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/modificar/$item->id/", '<i class="icon-edit icon-large verde" title="Modificar"></i>'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->id/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'class="eliminar" data-toggle="modal" data-target="#modalEliminar"'); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

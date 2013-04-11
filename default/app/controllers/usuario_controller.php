@@ -22,7 +22,9 @@ class UsuarioController extends AppController
     }
 
     public function eliminar($id) {
-
+        $usuario = new Usuario();
+        if( $usuario->eliminarUsuario($id) ) Flash::valid('Usuario Eliminado');
+        Router::toAction('index/');
     }
 
 }
