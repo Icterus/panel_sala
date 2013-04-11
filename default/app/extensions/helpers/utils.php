@@ -32,8 +32,13 @@ class Utils {
 
         $model = $modelo[0];
         $method = $modelo[1];
-        $arg = $modelo[2];
-        $rs = Load::model($model)->$method($arg);
+        if ( isset($modelo[2]) ){
+            $arg = $modelo[2];
+            $rs = Load::model($model)->$method($arg);
+        } else  {
+            $rs = Load::model($model)->$method();
+        }
+
 
         if ( $opciones && !is_array($arrayOpciones) ) {
             throw new Exception("Esperabamos un Array como datos", 1);
