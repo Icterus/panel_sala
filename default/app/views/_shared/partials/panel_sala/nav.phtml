@@ -14,11 +14,13 @@
 
              <?php echo Html::link('', 'Principal'); ?>
               </li>
-
+<!-- Reportes  de  Votacion -->
              <li class="dropdown">
                 <?php echo Html::link('#', 'Reportes<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
                     <ul class="dropdown-menu">
                       <li><?php echo Html::link('reporte/', 'Reportes', 'tabindex="-1"'); ?></li>
+                      <li><?php echo Html::link('reporte/', 'Reporte x Hora', 'tabindex="-1"'); ?></li>
+                      <li><?php echo Html::link('reporte/', 'Reporte Oficial', 'tabindex="-1"'); ?></li>
 
                     </ul>
               </li>
@@ -28,16 +30,15 @@
                 <?php echo Html::link('llamadas/', 'LLamadas'); ?>
 
               </li>
-               <li class="">
-
-                <?php echo Html::link('voto/', 'Reportar Voto'); ?>
-
+<!--  Operaciones de  Votos -->
+              <li class="dropdown">
+                <?php echo Html::link('#', 'Votos <b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
+                    <ul class="dropdown-menu">
+                      <li><?php echo Html::link('voto/', 'Reportar Voto', 'tabindex="-1"'); ?></li>
+                      <li><?php echo Html::link('buscar/', 'Consultar Voto', 'tabindex="-1"'); ?></li>
+                    </ul>
               </li>
-              <li class="">
-
-                <?php echo Html::link('buscar/', 'Consultar Voto'); ?>
-
-              </li>
+<!--  Consulta de Usuario -->
               <li class="dropdown">
                 <?php echo Html::link('#', 'Usuario<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
                     <ul class="dropdown-menu">
