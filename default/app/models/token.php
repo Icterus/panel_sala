@@ -35,7 +35,7 @@ class Token extends ActiveRecord {
     public function cambiar($id) {
         $rs = $this->find_first(Filter::get($id,'int'));
         if ( Auth::get('nivel') == 0 ) {
-            $rs->estado=($rs->estado)?self::INACTIVO:self::ACTIVO;
+            $rs->estado=($rs->estado == 1)?self::INACTIVO:self::ACTIVO;
             if ( $rs->update() )
                 return True;
         } else {
