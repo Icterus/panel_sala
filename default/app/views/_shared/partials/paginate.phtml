@@ -1,0 +1,33 @@
+    <div class="pagination span12 offset3">
+        <ul>
+        <?php
+        if (isset($destiny)) {
+            $parametros = implode('/', Router::get('parameters')).'/';
+            $url = Utils::getUrl($destiny.$parametros);
+        } else {
+            $url = Utils::getUrl(Router::get('route'));
+        }
+        $str = "";
+        if($objeto->prev) {
+            $str="<li>";
+            $str.=Html::link($url."/pag/$objeto->prev/", '« Anterior');
+            $str.="</li>\n";
+            echo $str;
+        }
+
+        if($objeto->total > 1) { for ($i=1; $i <= $objeto->total; $i++) {
+            $str=($objeto->current == $i)?"<li class=\"active\">\n":"<li>\n";
+            $str.=Html::link($url."/pag/$i/", $i);
+            $str .= "</li>\n";
+            echo $str;
+        } }
+
+        if($objeto->next) {
+            $str="<li>";
+            $str.=Html::link($url."/pag/$objeto->next/", 'Siguiente');
+            $str.="</li>\n";
+            echo $str;
+        }
+        ?>
+        <ul>
+    </div>

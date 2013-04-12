@@ -7,10 +7,11 @@ Load::model('usuario');
 class UsuarioController extends AppController
 {
 
-    public function index()
+    public function index($pag='pag',$num=1)
     {
         $usuarios = new Usuario();
-        $this->lista = $usuarios->listarUsuarios();
+        $this->objeto = $usuarios->listarUsuarios($num);
+        $this->lista = $this->objeto->items;
     }
 
     public function nuevo() {

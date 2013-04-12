@@ -147,4 +147,16 @@ class Utils {
         //return strftime("%d/%m/%Y", strtotime($fecha));
     }
 
+    /**
+     * Obtener el lugar de donde vienes para paginación
+     *
+     * @return String
+     */
+    public static function getUrl($route){
+        $url = explode('pag', $route);
+        $rs = $url[0];
+        return trim($rs,'/');
+    }
+
+
 }

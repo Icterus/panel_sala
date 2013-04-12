@@ -11,13 +11,11 @@ class Usuario extends ActiveRecord {
         $this->validates_length_of("usuario", 16, 6, "too_short: El nombre de usuario no debe tener al menos 6 caracteres", "too_long: El nombre de usuario no debe tener más de 16 caracteres");
     }
 
-    public function listarUsuarios(){
+    public function listarUsuarios($page=1){
         $conditions = (Auth::get('nivel'))?'conditions: nivel ='.Auth::get('nivel'):null;
         $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado FROM usuario
                                     LEFT JOIN municipio ON usuario.nivel = municipio.id";
-        $respuesta  = $this->paginate_by_sql( $consulta , 5, 1);
-
-        return $respuesta->items;
+        return $this->paginate_by_sql( $consulta, "page: $page", "per_page: 2");;
 
     }
 

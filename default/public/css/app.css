@@ -7,3 +7,4 @@ html, body { height: 100%; }
 .azul { color: #0088CC; }
 .rojo, .Inactivo { color: red; }
 a:hover { text-decoration: none; }
+.tooltip { min-width: 200px; }
