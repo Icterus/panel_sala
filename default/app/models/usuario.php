@@ -36,9 +36,9 @@ class Usuario extends ActiveRecord {
     public function eliminarUsuario($id) {
         $rs = $this->find_first(Filter::get($id,'int'));
         if ( Auth::get('id') == $id ) {
-            Flash::error('Disculpe no se puede borrar así mismo');
+            Flash::error('Disculpe no se puede borrar usted mismo');
             return False;
-        } elseif ( Auth::get('perfil') == 1 && $rs->nivel == Auth::get('nivel') ) {
+        } elseif ( Auth::get('perfil') == 1 && ( $rs->nivel == Auth::get('nivel') || Auth::get('nivel') == 0 ) ) {
             if ( $rs->delete() ) {
                 return True;
             } else {
@@ -56,7 +56,7 @@ class Usuario extends ActiveRecord {
         if ( Auth::get('id') == $id ) {
             Flash::error('Disculpe no se puede modificar así mismo');
             return False;
-        } elseif ( Auth::get('perfil') == 1 && $rs->nivel == Auth::get('nivel') ) {
+        } elseif ( Auth::get('perfil') == 1 && ( $rs->nivel == Auth::get('nivel') || Auth::get('nivel') == 0 ) ) {
             $rs->estado = ($rs->estado)?self::INACTIVO:self::ACTIVO;
             if ( $rs->update() ) {
                 return True;

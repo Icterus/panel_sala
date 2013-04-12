@@ -17,7 +17,7 @@
                 <?php echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
             </label>
             <label>Tipo</label>
-                <?php echo Form::select('usuario.tipo', array(2 => 'Usuario', 1 => 'Administrador')); ?>
+                <?php echo Form::select('usuario.perfil', array(2 => 'Usuario', 1 => 'Administrador')); ?>
             </label>
             <?php endif; ?>
         </fieldset>
