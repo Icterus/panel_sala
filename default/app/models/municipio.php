@@ -6,7 +6,7 @@ class Municipio extends ActiveRecord {
 
 
     public function listarMunicipio(){
-        $columns = "columns: id, municipio";
+        $columns = "columns: id, municipio , meta";
         return $this->find($columns);
     }
 
