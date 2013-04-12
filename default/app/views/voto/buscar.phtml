@@ -1,4 +1,4 @@
-<?php   View::Content()?>
+
 
 
 <div class="span10 offset1">
@@ -7,6 +7,7 @@
 	<thead>
 		<tr>
 			<th>Centro de Votacion</th>
+			<th>Cedula</th>
 			<th>Nombre y Apellido</th>
 			<th>Telefono</th>
 			<th>Celular</th>
@@ -14,17 +15,39 @@
 
 		</tr>
 	</thead>
+	<?php
+
+if($busqueda){
+$estado = ($busqueda->estatus)?'Activo':'Inactivo';
+print "
 	<tbody>
 		<tr>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-			<td></td>
-
+			<td>$busqueda->centro_votacion</td>
+			<td>$busqueda->cedula</td>
+			<td>$busqueda->nombres   $busqueda->apellidos</td>
+			<td>$busqueda->telefono</td>
+			<td>$busqueda->celular</td>
+ 			<td class=\"text-center\">
+ 				<i class=\"icon-circle icon-large $estado \" title=\"Cambiar Estado\"></i>
+ 			</td>
 		</tr>
 
 	</tbody>
+";
+}else{
+
+	print "	<tbody>
+		<tr>
+			<td colspan =  \"6\">esta Vacia</td>
+
+
+		</tr>
+
+	</tbody>";
+}
+
+	?>
+
 </table>
 
 </div>
