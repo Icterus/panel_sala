@@ -23,7 +23,7 @@ class AppController extends Controller {
 	{
         if (!Auth::is_valid()) {
             View::template('login');
-            if ( !(Router::get('controller') == 'index' && Router::get('action') == 'index') ) {
+            if ( !(Router::get('controller') == 'index' && Router::get('action') == 'index') && !(Router::get('controller') == 'reporte' && Router::get('action') == 'reporteapi') ) {
                 Router::redirect('/');
             }
         }
