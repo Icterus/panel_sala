@@ -13,9 +13,12 @@ class Usuario extends ActiveRecord {
 
     public function listarUsuarios(){
         $conditions = (Auth::get('nivel'))?'conditions: nivel ='.Auth::get('nivel'):null;
-        $columns = "columns: usuario.id, usuario, municipio, perfil, estado";
-        $joins = "join: LEFT JOIN municipio ON usuario.nivel = municipio.id";
-        return $this->find($columns,$conditions,$joins);
+        $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado FROM usuario
+                                    LEFT JOIN municipio ON usuario.nivel = municipio.id";
+        $respuesta  = $this->paginate_by_sql( $consulta , 5, 1);
+
+        return $respuesta->items;
+
     }
 
     public function nuevoUsuario() {
