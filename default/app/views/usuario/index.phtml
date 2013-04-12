@@ -1,5 +1,5 @@
-<?php View::content(); ?>
-<div class="span6 offset2">
+<div class="span6 offset3">
+    <?php View::content(); ?>
     <table class="table stripped table-hover table-striped">
         <thead>
             <tr>
@@ -17,7 +17,7 @@
                 <td><?php echo $estado; ?></td>
                 <td class="text-center"><?php echo Html::link("usuario/estado/$item->id/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>'); ?></td>
                 <td class="text-center"><?php echo Html::link("usuario/modificar/$item->id/", '<i class="icon-edit icon-large verde" title="Modificar"></i>'); ?></td>
-                <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->id/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'class="eliminar" data-toggle="modal" data-target="#modalEliminar"'); ?></td>
+                <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->id/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'class="eliminar"'); ?></td>
             </tr>
             <?php endforeach; ?>
         </tbody>

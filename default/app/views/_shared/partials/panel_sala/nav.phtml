@@ -14,6 +14,7 @@
 
              <?php echo Html::link('', 'Principal'); ?>
               </li>
+              <?php if ( Auth::get('perfil') == 1 ) :?>
 <!-- Reportes  de  Votacion -->
              <li class="dropdown">
                 <?php echo Html::link('#', 'Reportes<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
@@ -24,6 +25,7 @@
 
                     </ul>
               </li>
+              <?php endif; ?>
 
                <li class="">
 
@@ -39,6 +41,7 @@
                     </ul>
               </li>
 <!--  Consulta de Usuario -->
+            <?php if ( Auth::get('perfil') == 1 ) :?>
               <li class="dropdown">
                 <?php echo Html::link('#', 'Usuario<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
                     <ul class="dropdown-menu">
@@ -46,6 +49,7 @@
                       <li><?php echo Html::link('usuario/', 'Listar', 'tabindex="-1"'); ?></li>
                     </ul>
               </li>
+            <?php endif; ?>
               <li class="">
 
                 <?php echo Html::link('salir/', 'Salir'); ?>

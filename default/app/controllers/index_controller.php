@@ -20,6 +20,7 @@ class IndexController extends AppController
                 } else {
                     Session::set( 'id', $this->auth->get('id') );
                     Session::set( 'nivel', $this->auth->get('nivel') );
+                    Session::set( 'perfil', $this->auth->get('perfil') );
                     Router::redirect('principal/');
                 }
             }  elseif (Auth::is_valid() ) {

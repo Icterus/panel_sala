@@ -1,1 +1,26 @@
-<?php View::content(); ?>
+<div class="span4 offset4">
+    <?php View::content(); ?>
+    <?php echo Form::open(); ?>
+        <fieldset>
+            <legend>Crear Usuario</legend>
+            <label>Nombre de Usuario</label>
+                <?php echo Form::text('usuario.usuario'); ?>
+            </label>
+            <label>Contraseña</label>
+                <?php echo Form::pass('usuario.clave'); ?>
+            </label>
+            <label>Confirme Contraseña</label>
+                <?php echo Form::pass('usuario.reclave'); ?>
+            </label>
+            <?php if ( Auth::get('nivel') == 0 ) :?>
+            <label>Nivel</label>
+                <?php echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
+            </label>
+            <label>Tipo</label>
+                <?php echo Form::select('usuario.tipo', array(2 => 'Usuario', 1 => 'Administrador')); ?>
+            </label>
+            <?php endif; ?>
+        </fieldset>
+        <?php echo Form::submit('Crear', 'class="btn btn-primary btn-large pull-right"'); ?>
+    <?php echo Form::close(); ?>
+</div>
