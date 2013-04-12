@@ -22,13 +22,11 @@ class ReporteController extends AppController
 	public function reporteapi() {
 		$salida = array('estado' => 'error');
 		if ( Input::hasPost('key') ) {
-			if ( Input::post('key') == md5('pdvsa_reporte') ) {
-				Load::model('reporte_pdvsa');
-				$rep = new ReportePdvsa();
-				$cedula = Input::post('cedula');
-				if ( $rep->insertar($cedula) ) {
-					$salida['estado'] = 'OK';
-				}
+			Load::model('reportes_externos');
+			$reporte = new ReportesExternos();
+			$cedula = Input::post('cedula');
+			if ( $reporte->insertar($cedula) ) {
+				$salida['estado'] = 'OK';
 			}
 		}
 		View::template(null);
