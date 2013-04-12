@@ -11,18 +11,13 @@ class votoController extends AppController
 	public function index()
 	{
 $this->mensaje ="Reportar Cedula / Voto";
+$this->submit = "voto/buscar";
 	}
 
 
-	public function buscar(){
-		Load::model('datos_personales');
-		if(Input::HasPost('cedula')){
-			$variable = new DatosPersonales();
-			 $this->busqueda = $variable->buscar(Input::post('cedula'));
 
-				}
 
-			}
+
 
 
 		// public function buscarvoto(){
