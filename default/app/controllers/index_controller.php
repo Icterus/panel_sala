@@ -29,7 +29,7 @@ class IndexController extends AppController
 	}
 
     public function principal() {
-        Flash::info('Hola');
+        Flash::info('Aun en Fase de Desarrollo y Constantes Cambios y Modificaciones');
     }
 
     public function salir() {
