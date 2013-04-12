@@ -23,10 +23,6 @@ class KeyController extends AppController
         Router::toAction('index/');
     }
 
-    public function eliminar($id) {
-
-    }
-
     public function regenerar($id) {
         $tokens = new Token();
         if( $tokens->regenerar($id) ) Flash::valid('Keys Modificado');
