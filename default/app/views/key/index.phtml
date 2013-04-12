@@ -17,7 +17,7 @@
             <tr>
                 <td><?php echo $item->dueno; ?></td>
                 <td class="text-center"><?php echo $item->cantidad; ?></td>
-                <td class="text-center"><i class="icon-lock icon-large" data-original-title="<?php echo $item->token_secret; ?>" rel="tooltip"></i></td>
+                <td class="text-center"><i class="icon-lock icon-large" data-trigger="click" data-original-title="<?php echo $item->token_secret; ?>" rel="tooltip"></i></td>
                 <td class="text-center"><?php echo Html::link("key/estado/$item->id/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>', 'class="modificar"'); ?></td>
                 <td class="text-center"><?php echo Html::link("key/regenerar/$item->id/", '<i class="icon-refresh icon-large azul" title="Modificar"></i>', 'class="modificar"'); ?></td>
             </tr>
