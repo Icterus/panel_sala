@@ -15,7 +15,7 @@ class Usuario extends ActiveRecord {
         $conditions = (Auth::get('nivel'))?'conditions: nivel ='.Auth::get('nivel'):null;
         $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado FROM usuario
                                     LEFT JOIN municipio ON usuario.nivel = municipio.id";
-        return $this->paginate_by_sql( $consulta, "page: $page", "per_page: 2");;
+        return $this->paginate_by_sql( $consulta, "page: $page", "per_page: 15");;
 
     }
 
