@@ -4,17 +4,20 @@
         <thead>
             <tr>
                 <th>Usuario</th>
+                <th>Cuenta</th>
                 <th>Nivel</th>
-                <th>Estado</th>
-                <th colspan="2" class="text-center">Opciones</th>
+                <th colspan="3" class="text-center">Opciones</th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($lista as $item): $estado = ($item->estado)?'Activo':'Inactivo';?>
+            <?php foreach ($lista as $item):
+            $estado = ($item->estado)?'Activo':'Inactivo';
+            $cuenta = ($item->perfil==1)?'Administrador':'Usuario';
+            ?>
             <tr>
                 <td><?php echo $item->usuario; ?></td>
-                <td><?php echo ($item->nivel)?$item->nivel:'Administrador'; ?></td>
-                <td><?php echo $estado; ?></td>
+                <td><?php echo $cuenta; ?></td>
+                <td><?php echo ($item->municipio)?$item->municipio:'Regional'; ?></td>
                 <td class="text-center"><?php echo Html::link("usuario/estado/$item->id/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>'); ?></td>
                 <td class="text-center"><?php echo Html::link("usuario/modificar/$item->id/", '<i class="icon-edit icon-large verde" title="Modificar"></i>'); ?></td>
                 <td class="text-center"><?php echo Html::link("usuario/eliminar/$item->id/", '<i class="icon-remove icon-large rojo" title="Eliminar"></i>', 'class="eliminar"'); ?></td>
