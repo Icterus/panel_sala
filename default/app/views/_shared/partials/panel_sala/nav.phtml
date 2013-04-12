@@ -40,13 +40,20 @@
                       <li><?php echo Html::link('buscar/', 'Consultar Voto', 'tabindex="-1"'); ?></li>
                     </ul>
               </li>
-<!--  Consulta de Usuario -->
+<!-- Área Administración -->
             <?php if ( Auth::get('perfil') == 1 ) :?>
               <li class="dropdown">
                 <?php echo Html::link('#', 'Usuario<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
                     <ul class="dropdown-menu">
                       <li><?php echo Html::link('usuario/nuevo', 'Nuevo', 'tabindex="-1"'); ?></li>
                       <li><?php echo Html::link('usuario/', 'Listar', 'tabindex="-1"'); ?></li>
+                    </ul>
+              </li>
+              <li class="dropdown">
+                <?php echo Html::link('#', 'Key Externos<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
+                    <ul class="dropdown-menu">
+                      <li><?php echo Html::link('key/nuevo/', 'Nuevo', 'tabindex="-1"'); ?></li>
+                      <li><?php echo Html::link('key/', 'Listar', 'tabindex="-1"'); ?></li>
                     </ul>
               </li>
             <?php endif; ?>

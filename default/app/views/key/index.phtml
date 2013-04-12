@@ -1,0 +1,32 @@
+<div class="span6 offset3">
+    <?php View::content(); ?>
+    <table class="table stripped table-hover table-striped">
+        <thead>
+            <tr>
+                <th>Dueño</th>
+                <th class="text-center">Cantidad</th>
+                <th class="text-center">Token</th>
+                <th colspan="2" class="text-center">Opciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($lista as $item):
+            $estado = ($item->estado)?'Activo':'Inactivo';
+            $cuenta = ($item->perfil==1)?'Administrador':'Usuario';
+            ?>
+            <tr>
+                <td><?php echo $item->dueno; ?></td>
+                <td class="text-center"><?php echo $item->cantidad; ?></td>
+                <td class="text-center"><i class="icon-lock icon-large" data-original-title="<?php echo $item->token_secret; ?>" rel="tooltip"></i></td>
+                <td class="text-center"><?php echo Html::link("key/estado/$item->id/", '<i class="icon-circle icon-large '.$estado.'" title="Cambiar Estado"></i>', 'class="modificar"'); ?></td>
+                <td class="text-center"><?php echo Html::link("key/regenerar/$item->id/", '<i class="icon-refresh icon-large azul" title="Modificar"></i>', 'class="modificar"'); ?></td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php echo Tag::js('bootstrap/bootstrap-tooltip'); ?>
+<?php View::partial('modal-cambiar'); ?>
+<script type="text/javascript">
+    $("[rel='tooltip']").tooltip();
+</script>

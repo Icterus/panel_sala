@@ -9,7 +9,7 @@ class ReportesExternos extends ActiveRecord {
         $cedula = str_replace(' ', '', $cedula);
         $cedula = str_replace('V-', '', $cedula);
         $cedula = Filter::get($cedula, 'int');
-        $rs = Load::model('token')->find_first( 'token_secret = \''.Input::post('key').'\'' );
+        $rs = Load::model('token')->consultar(Input::post('key'));
         if (!$rs) {
             return False;
         } elseif ( strlen($cedula) < 4 || $this->exists("cedula = '$cedula'") ) {

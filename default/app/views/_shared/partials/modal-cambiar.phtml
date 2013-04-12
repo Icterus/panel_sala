@@ -1,0 +1,21 @@
+<!-- Modal -->
+<div id="modalCambiar" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="modalCambiarLabel" aria-hidden="true">
+    <div class="modal-header">
+        <h3 id="modalCambiarLabel">Confirme...</h3>
+    </div>
+    <div class="modal-body">
+        <p>¿Esta seguro de modificar este elemento?</p>
+    </div>
+    <div class="modal-footer">
+        <button class="btn" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+        <a class="btn btn-danger">Modificar</a>
+    </div>
+</div>
+<script type="text/javascript">
+    var link_action;
+    $('.modificar').click(function(event){
+        event.preventDefault();
+        $('.btn-danger').attr('href', $(this).attr('href'));
+        $('#modalCambiar').modal();
+    });
+</script>

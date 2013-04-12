@@ -1,0 +1,12 @@
+<div class="span4 offset4">
+    <?php View::content(); ?>
+    <?php echo Form::open(); ?>
+        <fieldset>
+            <legend>Crear Token</legend>
+            <label>Dueño del Token</label>
+                <?php echo Form::text('token.dueno'); ?>
+            </label>
+        </fieldset>
+        <?php echo Form::submit('Crear', 'class="btn btn-primary btn-large pull-right"'); ?>
+    <?php echo Form::close(); ?>
+</div>

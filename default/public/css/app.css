@@ -4,6 +4,6 @@ html, body { height: 100%; }
 #wrap { height: auto !important; min-height: 100%; margin: 0 auto; }
 #wrap > .container-fluid { padding-top: 60px; }
 .verde, .Activo { color: green; }
-.azul { color: blue; }
+.azul { color: #0088CC; }
 .rojo, .Inactivo { color: red; }
 a:hover { text-decoration: none; }
