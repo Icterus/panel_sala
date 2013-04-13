@@ -29,7 +29,7 @@ class Token extends ActiveRecord {
         $token =  str_replace("'", '', $token);
         $token = mysql_real_escape_string($token);
         $conditions = "token_secret = '$token' AND estado = 1";
-        return $this->find_first($token);
+        return $this->find_first($conditions);
     }
 
     public function cambiar($id) {
