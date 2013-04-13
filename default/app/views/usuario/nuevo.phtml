@@ -9,12 +9,9 @@
                 <?php echo Form::pass('usuario.clave'); ?>
             <label>Confirme Contraseña</label>
                 <?php echo Form::pass('usuario.reclave'); ?>
-            <?php if ( Auth::get('nivel') == 99 ) {?>
+            <?php if ( Auth::get('nivel') == 99 || Auth::get('nivel') == 0 ) {?>
             <label>Nivel</label>
-            <?php echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
-
-            <?php }if ( Auth::get('nivel') == 0 ) :?>
-            <label>Nivel</label>
+            <?php // echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
                 <?php
                 $munipicio = Load::model('municipio')->listarMunicipio();
                 // print_r($munipicio);
@@ -26,6 +23,7 @@
                 }
                 print '</select>';
                 // echo Form::dbSelect('usuario.nivel', 'municipio', array(, ''), '--Seleccione--'); ?>
+            <?php } if ( Auth::get('nivel') == 0 ) :?>
             <label>Tipo</label>
                 <?php echo Form::select('usuario.perfil', array(2 => 'Usuario', 1 => 'Administrador')); ?>
             <?php endif; ?>

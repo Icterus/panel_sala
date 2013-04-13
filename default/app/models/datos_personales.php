@@ -29,6 +29,17 @@ protected $logger = TRUE;
 		return $this->find_first($id, $columns);
 	}
 
+	public function listadoLlamadas($centro, $gmvv){
+		$centro = Filter::get($centro, 'int');
+		$conditions= "conditions: `centro_votacion_id` = $centro";
+		if (!is_null($gmvv)) {
+			$gmvv = Filter::get($gmvv, 'int');
+			$conditions.= " AND `GMVV` = $gmvv";
+		}
+		$limit = "limit: 10";
+		return $this->find($conditions, $limit);
+	}
+
 }
 
 

@@ -1,4 +1,113 @@
-<?php
+<div class="span8 offset2">
+    <?php View::content(); // FIXME: Por premura, LIMPIA EL CÓDICO LUEGO ?>
+    <?php echo Form::open('', 'post', ''); ?>
+    <?php if( Session::get('nivel') == 99 || Auth::get('nivel') == 0): ?>
+    <label><div class="span4 offset2">Municipio</div>
+        <?php echo Form::dbSelect('municipio', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
+    </label>
+    <?php endif; ?>
+    <label><div class="span4 offset2">Parroquia</div>
+        <div id="capa_parroquia">
+        <?php
+        if( Session::get('nivel') == 99 ) {
+            echo Form::select('parroquia', array('--Seleccione--'));
+        } else {
+            echo Form::dbSelect('parroquia', 'parroquia', array('parroquia', 'listarParroquia', Session::get('nivel')), '--Seleccione--');
+        }
+        ?>
+        </div>
+    </label>
+    <label><div class="span4 offset2">Centro de Votación</div>
+        <div id="capa_centro"><?php echo Form::select('centro', array('--Seleccione--')); ?></div>
+    </label>
+    <label class="checkbox">
+        <div class="span4 offset6"><input type="checkbox" id="gmvv">Misión Vivienda</div>
+    </label>
+    <div class="span4 offset8"><button type="submit" id="boton" class="btn btn-primary">Generar</button></div>
+    </form>
+    <br/>
+    <table class="table table-stripped">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Telefóno</th>
+                <th>Celular</th>
+                <th class="text-center" colspan="2">Respuestas</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Fulano de'Tal</td>
+                <td>0422420</td>
+                <td>0120012</td>
+                <td class="text-center"><a href="#" data-id="123">Ya Voto</a></td>
+                <td class="text-center"><a href="#">LLamar Después</a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
+<script type="text/javascript">
+    $('form').on('submit', function(e){
+        e.preventDefault();
+        var gmvv = $("#gmvv:checked").val();
+        var da = $(this).serializeArray();
+        if (gmvv == undefined) {
+            gmvv = '';
+        } else {
+            gmvv = '1';
+        }
+        $.get(
+            '<?php echo PUBLIC_PATH; ?>llamadas/listado/'+da[2].value+'/'+gmvv,
+            null,
+            function(data){
+                $('table>tbody').html(data);
+            });
+    });
 
-?>
+    $('a').on('click', function(e){
+        var text = $(this).html();
+        $(this).parent().parent().fadeOut('slow');
+        if (text == 'Ya Voto') {
+            var id = $(this).attr('data-id');
+            votar(id);
+        }
+    });
+
+    function votar(idResp) {
+        $.post('<?php echo PUBLIC_PATH; ?>voto/reporte_json/',
+        {
+            id: idResp,
+        },
+        function(data) {
+            if (data.message == 'OK') {
+                console.log('Voto cargado con éxito');
+            } else {
+                console.log('No se pudo cargar el voto, intente de nuevo');
+            }
+        },
+        'json');
+    }
+
+    // Recarga parroquia
+    $('#municipio').on('change', function(){
+        var municipio = $(this).val();
+        $.get(
+            '<?php echo PUBLIC_PATH; ?>llamadas/comboparroquia/'+municipio,
+            null,
+            function(data){
+                $('#capa_parroquia').html(data);
+            });
+    });
+    // Recarga centro
+    $('#parroquia').on('change', function(){
+        var municipio = $('#municipio').val();
+        var parroquia = $(this).val();
+        $.get(
+            '<?php echo PUBLIC_PATH; ?>llamadas/combocentro/'+municipio+'/'+parroquia,
+            null,
+            function(data){
+                $('#capa_centro').html(data);
+            });
+    });
+</script>
