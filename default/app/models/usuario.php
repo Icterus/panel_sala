@@ -36,7 +36,10 @@ class Usuario extends ActiveRecord {
 
     public function eliminarUsuario($id) {
         $rs = $this->find_first(Filter::get($id,'int'));
-        if ( Auth::get('id') == $id ) {
+        if( Auth::get('nivel') == 0 ) {
+            Flash::error('No cuentes con eso!!!');
+            return False;
+        } elseif ( Auth::get('id') == $id ) {
             Flash::error('Disculpe no se puede borrar usted mismo');
             return False;
         } elseif ( Auth::get('perfil') == 1 && ( $rs->nivel == Auth::get('nivel') || Auth::get('nivel') == 0 ) ) {
