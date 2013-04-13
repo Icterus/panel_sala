@@ -6,5 +6,5 @@ html, body { height: 100%; }
 .verde, .Activo { color: green; }
 .azul { color: #0088CC; }
 .rojo, .Inactivo { color: red; }
+.tooltip-inner { max-width: 280px; }
 a:hover { text-decoration: none; }
-.tooltip-inner { max-width: 270px; }

@@ -3,13 +3,14 @@
 	<a class="primary"><strong><?php echo $mensaje;?></strong> </a>
 	<div class="clearfix"></div>
 	<div class="input-append">
-
-		<?php echo  Form::text('cedula','class = "input-medium "')?>
-		<?php echo  Form::submit('Buscar','class = "btn "')?>
-
+		<?php echo Form::text('cedula','class = "input-medium "')?>
+        <button type="submit" id="boton" class="btn">Buscar</button>
 	</div>
-
-
-
 </div>
 <?php echo Form::close()?>
+
+<?php
+if ($asincrono) {
+    View::partial('modal');
+}
+?>
