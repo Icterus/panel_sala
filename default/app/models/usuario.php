@@ -13,10 +13,10 @@ class Usuario extends ActiveRecord {
 
     public function listarUsuarios($page=1){
         $conditions = (Auth::get('nivel'))?'WHERE nivel ='.Auth::get('nivel'):'';
-        $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado FROM usuario
+        $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado, sesion FROM usuario
                                     LEFT JOIN municipio ON usuario.nivel = municipio.id
                                     $conditions";
-        return $this->paginate_by_sql( $consulta, "page: $page", "per_page: 15");;
+        return $this->paginate_by_sql( $consulta, "page: $page", "per_page: 10");;
 
     }
 
@@ -63,7 +63,7 @@ class Usuario extends ActiveRecord {
             return False;
         } elseif ( Auth::get('perfil') == 1 && ( $rs->nivel == Auth::get('nivel') || Auth::get('nivel') == 0 ) ) {
             $rs->estado = ($rs->estado)?self::INACTIVO:self::ACTIVO;
-            $rs->sesion_id = NULL;
+            $rs->sesion = '';
             if ( $rs->update() ) {
                 return True;
             } else {
@@ -80,17 +80,21 @@ class Usuario extends ActiveRecord {
 
         $id=(is_null($id))?Session::get('id'):Filter::get($id,'int');
         $rs = $this->find_first($id);
-        $rs->sesion_id = $session;
-
-        if($rs->update())return True;
-
-        return False;
+        if ($rs){
+            $rs->sesion = $session;
+            if($rs->update())
+                return True;
+            else
+                return False;
+        }
     }
 
     public function getSesion(){
         $rs = $this->find_first(Session::get('id'));
-        if($rs)return $rs->sesion_id;
-        return False;
+        if($rs)
+            return $rs->sesion;
+        else
+            return False;
     }
 
 }

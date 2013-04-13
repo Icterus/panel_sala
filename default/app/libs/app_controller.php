@@ -31,5 +31,12 @@ class AppController extends Controller {
 
 	final protected function finalize()
 	{
+        if ( Auth::is_valid() ) {
+            if (Auth::get('nivel') != 0 && Load::model('usuario')->getSesion() != Session::get('sesion')) {
+                if ( !(Router::get('controller') == 'index' && Router::get('action') == 'index') && !(Router::get('controller') == 'reporte' && Router::get('action') == 'reporteapi') ) {
+                    Router::redirect('salir/');
+                }
+            }
+        }
 	}
 }

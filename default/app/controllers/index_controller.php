@@ -18,9 +18,14 @@ class IndexController extends AppController
                 if ( !$this->auth->authenticate() ) {
                     Flash::error("Usuario o Contrase&ntilde;a es Invalida");
                 } else {
-                    Session::set( 'id', $this->auth->get('id') );
-                    Session::set( 'nivel', $this->auth->get('nivel') );
-                    Session::set( 'perfil', $this->auth->get('perfil') );
+                    $id = $this->auth->get('id');
+                    $session_id = uniqid();
+                    Session::set('id', $id );
+                    Session::set('nivel', $this->auth->get('nivel') );
+                    Session::set('perfil', $this->auth->get('perfil') );
+                    Session::set('sesion', $session_id);
+                    Session::set('pepito', $session_id);
+                    Load::model('usuario')->setSesion($session_id, $id);
                     Router::redirect('principal/');
                 }
             }  elseif (Auth::is_valid() ) {
@@ -36,10 +41,12 @@ class IndexController extends AppController
         if(!Auth::is_valid()) {
             Flash::info("Identifícate nuevamente.");
         } else {
+            Load::model('usuario')->setSesion('', Session::get('id'));
             Auth::destroy_identity();
             Session::delete('id');
             Session::delete('nivel');
             Session::delete('perfil');
+            Session::delete('sesion');
             Flash::valid("Sesión Cerrada");
         }
         Router::redirect('/');
