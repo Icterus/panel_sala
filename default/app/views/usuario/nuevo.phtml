@@ -5,20 +5,29 @@
             <legend>Crear Usuario</legend>
             <label>Nombre de Usuario</label>
                 <?php echo Form::text('usuario.usuario'); ?>
-            </label>
             <label>Contraseña</label>
                 <?php echo Form::pass('usuario.clave'); ?>
-            </label>
             <label>Confirme Contraseña</label>
                 <?php echo Form::pass('usuario.reclave'); ?>
-            </label>
-            <?php if ( Auth::get('nivel') == 0 ) :?>
+            <?php if ( Auth::get('nivel') == 99 ) {?>
             <label>Nivel</label>
-                <?php echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
-            </label>
+            <?php echo Form::dbSelect('usuario.nivel', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
+
+            <?php }if ( Auth::get('nivel') == 0 ) :?>
+            <label>Nivel</label>
+                <?php
+                $munipicio = Load::model('municipio')->listarMunicipio();
+                // print_r($munipicio);
+                print '<select name="usuario[nivel]">';
+                print '<option>--Seleccione--</option>';
+                print '<option value="99">Regional</option>';
+                foreach ($munipicio as $item) {
+                    print "\t\t<option value=\"$item->id\">$item->municipio</option>\n";
+                }
+                print '</select>';
+                // echo Form::dbSelect('usuario.nivel', 'municipio', array(, ''), '--Seleccione--'); ?>
             <label>Tipo</label>
                 <?php echo Form::select('usuario.perfil', array(2 => 'Usuario', 1 => 'Administrador')); ?>
-            </label>
             <?php endif; ?>
         </fieldset>
         <?php echo Form::submit('Crear', 'class="btn btn-primary btn-large pull-right"'); ?>

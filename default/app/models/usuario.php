@@ -12,7 +12,7 @@ class Usuario extends ActiveRecord {
     }
 
     public function listarUsuarios($page=1){
-        $conditions = (Auth::get('nivel'))?'WHERE nivel ='.Auth::get('nivel'):'';
+        $conditions = (Auth::get('nivel') && Auth::get('nivel') != 99)?'WHERE nivel ='.Auth::get('nivel'):'WHERE nivel != 0';
         $consulta = "SELECT usuario.id , usuario, municipio, perfil, estado, sesion FROM usuario
                                     LEFT JOIN municipio ON usuario.nivel = municipio.id
                                     $conditions";

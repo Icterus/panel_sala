@@ -49,6 +49,7 @@
                       <li><?php echo Html::link('usuario/index/', 'Listar', 'tabindex="-1"'); ?></li>
                     </ul>
               </li>
+            <?php endif; if ( Auth::get('nivel') == 0 ) :?>
               <li class="dropdown">
                 <?php echo Html::link('#', 'Key Externos<b class="caret"></b>', 'class="dropdown-toggle" data-toggle="dropdown" role="button"'); ?>
                     <ul class="dropdown-menu">
