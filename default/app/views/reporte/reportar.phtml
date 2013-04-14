@@ -17,6 +17,13 @@
         <tbody>
             <?php foreach ($lista as $item):
             $indice=($reportes[$item->centro_id])?$reportes[$item->centro_id]:0;
+            if (count($text) == $indice){
+                $disabled='disabled="disabled"';
+                $horarios='Sin Reporte';
+            } else {
+                $disabled='';
+                $horarios=$text[$indice]->nombre_reporte;
+            }
             echo Form::open('', 'post', 'id="'.$item->centro_id.'" data-reporte="'.($indice+1).'"');?>
             <tr>
                 <td><?php echo $item->centro_id; ?></td>
@@ -24,7 +31,7 @@
                 <td><?php echo $item->Centro; ?></td>
                 <td><?php echo Form::text('maduro', 'class="input-mini"'); ?></td>
                 <td><?php echo Form::text('capriles', 'class="input-mini"'); ?></td>
-                <td class="<?php echo $item->centro_id; ?>"><?php echo Form::submit($text[$indice]->nombre_reporte, 'class="btn btn-primary"'); ?></td>
+                <td class="<?php echo $item->centro_id; ?>"><?php echo Form::submit($horarios, 'class="btn btn-primary" '.$disabled); ?></td>
             </tr>
             </form>
             <?php endforeach; ?>
@@ -65,7 +72,12 @@
                     console.log(reportes[nueva_hora]);
                     console.log($('#'+centro).attr('data-reporte'));
                     $('#'+centro).attr('data-reporte', nueva_hora);
-                    $('.'+centro+'>input:submit').val(reportes[nueva_hora]);
+                    if ( reportes.length == nueva_hora) {
+                        $('.'+centro+'>input:submit').attr('disabled','disabled');
+                        $('.'+centro+'>input:submit').val('Sin reporte');
+                    } else {
+                        $('.'+centro+'>input:submit').val(reportes[nueva_hora]);
+                    }
                     limpiaForm('#'+centro);
                 } else {
                     alert('Error reportar vuelva a intentar');
