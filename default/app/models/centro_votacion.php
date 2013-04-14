@@ -11,6 +11,7 @@ class CentroVotacion extends ActiveRecord {
         return $this->find($conditions, $columns, $joins);
     }
 
+
 }
 
 ?>

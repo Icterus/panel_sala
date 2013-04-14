@@ -19,6 +19,7 @@
 
              <?php echo Html::link('', 'Principal'); ?>
               </li>
+              <li><?php echo Html::link('reporte/reportar', 'Reportar', 'tabindex="-1"'); ?></li>
               <?php if ( Auth::get('perfil') == 1 ) :?>
 <!-- Reportes  de  Votacion -->
              <li class="dropdown">
