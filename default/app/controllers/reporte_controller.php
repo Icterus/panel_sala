@@ -14,7 +14,7 @@ class ReporteController extends AppController
 
 	public function reportar($municipio=null, $parroquia=null){
 		$this->lista=False;
-		if( Session::get('nivel') != 99 AND Session::get('nivel') != 0 ){
+		if( Session::get('nivel') != 99 AND Session::get('nivel') != 0 && is_null($municipio)){
 			Router::toAction('reportar/'.Session::get('nivel'));
 		}
 
