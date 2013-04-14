@@ -42,6 +42,8 @@
         $('form').on('submit', function(e){
             e.preventDefault();
             var campo = $(this).serializeArray();
+            // $(this+'>#maduro').val('');
+            // $('#capriles').val('');
             var maduro = campo[0].value;
             var capriles = campo[1].value;
             var hora = $(this).attr('data-reporte');
@@ -49,6 +51,7 @@
             if (maduro == '' && capriles == '') {
                 alert('No se puede reporte vacío');
             } else {
+                $('.'+centro+'>input:submit').attr('disabled','disabled');
                 reportar(hora, centro, maduro, capriles);
             }
         });
@@ -76,6 +79,7 @@
                         $('.'+centro+'>input:submit').attr('disabled','disabled');
                         $('.'+centro+'>input:submit').val('Sin reporte');
                     } else {
+                        $('.'+centro+'>input:submit').removeAttr('disabled');
                         $('.'+centro+'>input:submit').val(reportes[nueva_hora]);
                     }
                     limpiaForm('#'+centro);
