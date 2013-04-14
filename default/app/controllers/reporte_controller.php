@@ -7,7 +7,9 @@ class ReporteController extends AppController
 {
 	public function index()
 	{
-
+		if( Session::get('nivel') != 99 AND Session::get('nivel') != 0 ){
+			Router::toAction('parroquias/'.Session::get('nivel'));
+		}
 	}
 
 	public function centros($municipio,$parroquia){

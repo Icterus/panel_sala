@@ -5,7 +5,7 @@
     <label><div class="span4 offset2">Municipio</div>
         <?php echo Form::dbSelect('municipio', 'municipio', array('municipio', 'listarMunicipio'), '--Seleccione--'); ?>
     </label>
-    <?php endif; ?>
+    <?php else: echo Form::hidden('municipio', null, Auth::get('nivel')); endif; ?>
     <label><div class="span4 offset2">Parroquia</div>
         <div id="capa_parroquia">
         <?php
@@ -104,7 +104,6 @@
             });
     });
 
-/*
     // Recarga centro
     $('#parroquia').on('change', function(){
         var municipio = $('#municipio').val();
@@ -116,5 +115,5 @@
                 $('#capa_centro').html(data);
             });
     });
-*/
+
 </script>

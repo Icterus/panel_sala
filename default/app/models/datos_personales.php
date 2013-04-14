@@ -41,14 +41,18 @@ protected $logger = TRUE;
 	}
 	public function listadoLlamadasRandom($centro, $gmvv){
 		$centro = Filter::get($centro, 'int');
-		$conditions= "conditions: `centro_votacion_id` = $centro";
+		$columns = "columns: datos_personales.id, datos_personales.nombres, datos_personales.apellidos,
+			datos_personales.telefono, datos_personales.celular, informacion.voto";
+		$conditions= "conditions: voto is null AND datos_personales.`centro_votacion_id` = $centro";
 		if (!is_null($gmvv)) {
 			$gmvv = Filter::get($gmvv, 'int');
 			$conditions.= " AND `GMVV` = $gmvv";
 		}
+		$conditions.= " AND (`telefono` != '' OR `celular` != '')";
+		$join = "join: LEFT JOIN informacion ON informacion.datos_personales_id = datos_personales.id";
 		$order = "order: RAND()";
 		$limit = "limit: 10";
-		return $this->find($conditions, $limit, $order);
+		return $this->find($columns, $conditions, $join, $order, $limit);
 	}
 
 }

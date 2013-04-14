@@ -8,6 +8,11 @@
             <span class="icon-bar"></span>
           </button>
           <?php echo Html::link('index', 'PSUV Falcón','class="brand"'); ?>
+          <ul class="nav pull-right">
+              <li>
+                <?php echo Html::link('#', '<strong>'.Auth::get('usuario').'</strong>'); ?>
+              </li>
+          </ul>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="">
