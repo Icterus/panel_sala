@@ -26,11 +26,13 @@ class ReporteController extends AppController
 			$this->lista=Load::model('centro_votacion')->listarCentro($municipio, $parroquia);
 			$reporte=Load::model('reportes_centro_votacion')->consultar_reportes($municipio, $parroquia);
 			$this->reportes=array();
+			$centro="";
 			foreach ($reporte as $item) {
 				if($centro != $item->id_centro_votacion){
 					$centro=$item->id_centro_votacion;
+					print $item->id_reporte;
+					$this->reportes[$item->id_centro_votacion]=$item->id_reporte;
 				}
-				$this->reportes[$item->id_centro_votacion]=$item->id_reporte;
 			}
 			$this->text=Load::model('reportes')->lista();
 			$this->js_repos=array();
