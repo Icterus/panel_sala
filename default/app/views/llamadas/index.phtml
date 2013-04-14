@@ -57,12 +57,15 @@
         } else {
             gmvv = '1';
         }
-        $.get(
-            '<?php echo PUBLIC_PATH; ?>llamadas/listado/'+da[2].value+'/'+gmvv,
-            null,
-            function(data){
-                $('table>tbody').html(data);
-            });
+        $('table>tbody').html('<tr><td colspan="4" class="text-center"><i class="icon-spinner icon-spin"></i> Por favor espere...</td></tr>');
+        if(da[2].value != 0){
+            $.get(
+                '<?php echo PUBLIC_PATH; ?>llamadas/listado/'+da[2].value+'/'+gmvv,
+                null,
+                function(data){
+                    $('table>tbody').html(data);
+                });
+        }
     });
 
     $('a').on('click', function(e){
