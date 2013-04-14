@@ -57,8 +57,8 @@
         } else {
             gmvv = '1';
         }
-        $('table>tbody').html('<tr><td colspan="4" class="text-center"><i class="icon-spinner icon-spin"></i> Por favor espere...</td></tr>');
         if(da[2].value != 0){
+            $('table>tbody').html('<tr><td colspan="4" class="text-center"><i class="icon-spinner icon-large icon-spin"></i> Por favor espere...</td></tr>');
             $.get(
                 '<?php echo PUBLIC_PATH; ?>llamadas/listado/'+da[2].value+'/'+gmvv,
                 null,
@@ -68,6 +68,7 @@
         }
     });
 
+/*
     $('a').on('click', function(e){
         var text = $(this).html();
         $(this).parent().parent().fadeOut('slow');
@@ -91,7 +92,7 @@
         },
         'json');
     }
-
+*/
     // Recarga parroquia
     $('#municipio').on('change', function(){
         var municipio = $(this).val();
@@ -102,6 +103,8 @@
                 $('#capa_parroquia').html(data);
             });
     });
+
+/*
     // Recarga centro
     $('#parroquia').on('change', function(){
         var municipio = $('#municipio').val();
@@ -113,4 +116,5 @@
                 $('#capa_centro').html(data);
             });
     });
+*/
 </script>
