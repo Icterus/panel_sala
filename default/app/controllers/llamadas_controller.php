@@ -44,18 +44,18 @@ class LlamadasController extends AppController
 
     public function listado($centro, $gmvv=null) {
         $salida = array('msg'=>'error');
-        $rs = Load::model('datos_personales')->listadoLlamadas($centro, $gmvv);
+        $rs = Load::model('datos_personales')->listadoLlamadasRandom($centro, $gmvv);
         if ( $rs ) {
             foreach ($rs as $item) {
                 echo '<tr>
                     <td>'.$item->nombres.' '.$item->apellidos.'</td>
                     <td>'.$item->telefono.'</td>
                     <td>'.$item->celular.'</td>
-                    <td class="text-center"><a href="#" data-id="'.$item->id.'">Ya Voto</a>
-                    </td><td class="text-center"><a href="#">LLamar Después</a></td>
+                    <td class="text-center"><a href="#" class="llamadas_a" data-id="'.$item->id.'">Ya Voto</a>
+                    </td><td class="text-center"><a href="#" class="llamadas_a">LLamar Después</a></td>
                     </tr>';
             }
-                echo "<script type='text/javascript'>$('a').on('click', function(e){
+                echo "<script type='text/javascript'>$('#llamadas_a').on('click', function(e){
         var text = $(this).html();
         $(this).parent().parent().fadeOut('slow');
         if (text == 'Ya Voto') {
