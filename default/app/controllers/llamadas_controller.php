@@ -55,7 +55,7 @@ class LlamadasController extends AppController
                     </td><td class="text-center"><a href="#" class="llamadas_a">LLamar Después</a></td>
                     </tr>';
             }
-                echo "<script type='text/javascript'>$('#llamadas_a').on('click', function(e){
+                echo "<script type='text/javascript'>$('.llamadas_a').on('click', function(e){
         var text = $(this).html();
         $(this).parent().parent().fadeOut('slow');
         if (text == 'Ya Voto') {
