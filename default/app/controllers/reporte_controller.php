@@ -33,6 +33,10 @@ class ReporteController extends AppController
 				$this->reportes[$item->id_centro_votacion]=$item->id_reporte;
 			}
 			$this->text=Load::model('reportes')->lista();
+			$this->js_repos=array();
+			foreach ($this->text as $item) {
+				$this->js_repos[]="'".$item->nombre_reporte."'";
+			}
 		}
 	}
 

@@ -26,7 +26,8 @@ class ReportesCentroVotacion extends ActiveRecord {
             where `reportes_centro_votacion`.`id_reporte` NOT IN (SELECT
             `reportes`.`id`
             FROM `psuv_panel`.`reportes` WHERE `centro_votacion`.`municipio_id`=$municipio
-            AND `centro_votacion`.`parroquia_id`=$parroquia  AND `reportes`.`id`!=`reportes_centro_votacion`.`id_reporte`)";
+            AND `centro_votacion`.`parroquia_id`=$parroquia  AND `reportes`.`id`!=`reportes_centro_votacion`.`id_reporte`)
+            ORDER BY id_reporte DESC";
             return $this->find_all_by_sql($sql);
     }
 }
