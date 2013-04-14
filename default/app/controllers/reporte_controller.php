@@ -30,7 +30,6 @@ class ReporteController extends AppController
 			foreach ($reporte as $item) {
 				if($centro != $item->id_centro_votacion){
 					$centro=$item->id_centro_votacion;
-					print $item->id_reporte;
 					$this->reportes[$item->id_centro_votacion]=$item->id_reporte;
 				}
 			}
