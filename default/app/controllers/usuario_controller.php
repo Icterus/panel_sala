@@ -12,6 +12,7 @@ class UsuarioController extends AppController
         $usuarios = new Usuario();
         $this->objeto = $usuarios->listarUsuarios($num);
         $this->lista = $this->objeto->items;
+        //print_r($this->objeto);
     }
 
     public function nuevo() {
