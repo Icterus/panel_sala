@@ -50,8 +50,11 @@ class ReporteController extends AppController
 	}
 
 	public function centros($municipio,$parroquia){
-        $this->municipio = $municipio;
-		$this->parroquia = $parroquia;
+        // $this->municipio = $municipio;
+		// $this->parroquia = $parroquia;
+
+		//Utils::grid(array('reportes_centro_votacion', 'votos_centro', $municipio, $parroquia));
+	$this->lista =  Load::model('reportes_centro_votacion')->votos_centro($municipio, $parroquia);
 	}
 
 	public function parroquias($municipio){

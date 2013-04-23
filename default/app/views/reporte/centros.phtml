@@ -1,8 +1,36 @@
 <div class="span6 offset3">
 
 <?php
-Utils::grid(array('centro_votacion', 'listarCentro', $municipio, $parroquia));
+$i = 0;
+$total = 0;
+// Utils::grid(array('reportes_centro_votacion', 'votos_centro', $municipio, $parroquia));
 ?>
 
+  <table class="table stripped table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Código</th>
+                <th>Centro de Votacion</th>
+                <th class="text-center">Votos</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($lista as $item):
+            ?>
+            <tr>
+                <td><?php echo $i; ?></td>
+                <td><?php echo $item->codigo; ?></td>
+  				<td><?php echo $item->nombre; ?></td>
+  				<td class="text-center"><?php echo $item->votos; ?></td>
+
+            </tr>
+
+            <?php  $i++; $total +=$item->votos; endforeach; ?>
+            <tr> 
+				<td colspan = "3" ></td>
+            	<td class="text-center" ><?php echo $total?></td></tr>
+        </tbody>
+    </table>
 
 </div>
