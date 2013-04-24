@@ -52,6 +52,47 @@ class ReportesCentroVotacion extends ActiveRecord {
 
     }
 
+
+
+        public function votos_municipio($municipio){
+
+        $sql = "SELECT 
+                        municipio.id,
+                        municipio.municipio as municipio,
+                        municipio.meta as meta,
+                        count(informacion.voto) as votos
+                    FROM
+                        psuv_panel.informacion
+                            LEFT JOIN
+                        centro_votacion ON informacion.centro_votacion_id = centro_votacion.id
+                            LEFT JOIN
+                        municipio ON centro_votacion.municipio_id = municipio.id
+                    GROUP BY municipio.id";
+                                return $this->find_all_by_sql($sql);
+
+
+    }
+
+
+        public function votos_parroquia($municipio){
+
+        $sql = "SELECT
+                        null as id,
+                        `centro_votacion`.`centro_nuevo` as codigo,
+                        `centro_votacion`.`nombre_centro` as nombre,
+                            count(`informacion`.`voto`) as votos
+                        FROM `psuv_panel`.`centro_votacion`
+                        LEFT JOIN `psuv_panel`.`parroquia`
+                        ON `parroquia`.`municipio_id` = `centro_votacion`.`municipio_id` 
+                               AND `parroquia`.`id_rep` = `centro_votacion`.`parroquia_id`
+                        LEFT JOIN  `psuv_panel`.`informacion`
+                        ON `informacion`.`centro_votacion_id` = `centro_votacion`.`id`
+                        WHERE `centro_votacion`.`municipio_id` = $municipio 
+                            GROUP BY `centro_votacion`.`municipio_id`";
+                                return $this->find_all_by_sql($sql);
+
+
+    }
 }
 
 ?>

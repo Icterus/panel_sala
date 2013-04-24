@@ -10,7 +10,24 @@ class ReporteController extends AppController
 		if( Session::get('nivel') != 99 AND Session::get('nivel') != 0 ){
 			Router::toAction('parroquias/'.Session::get('nivel'));
 		}
+		else {
+			$this->lista = Load::model('reportes_centro_votacion')->votos_municipio(Session::get('nivel'))	;	}
 	}
+
+
+	public function centros($municipio,$parroquia){
+        // $this->municipio = $municipio;
+		// $this->parroquia = $parroquia;
+
+		//Utils::grid(array('reportes_centro_votacion', 'votos_centro', $municipio, $parroquia));
+	$this->lista =  Load::model('reportes_centro_votacion')->votos_centro($municipio, $parroquia);
+	}
+
+	public function parroquias($municipio){
+		$this->municipio = $municipio;
+	}
+
+	// reportar
 
 	public function reportar($municipio=null, $parroquia=null){
 		$this->lista=False;
@@ -47,18 +64,6 @@ class ReporteController extends AppController
 		if ($rs) $salida['msg']='OK';
 		echo json_encode($salida);
 		View::select(null, 'json');
-	}
-
-	public function centros($municipio,$parroquia){
-        // $this->municipio = $municipio;
-		// $this->parroquia = $parroquia;
-
-		//Utils::grid(array('reportes_centro_votacion', 'votos_centro', $municipio, $parroquia));
-	$this->lista =  Load::model('reportes_centro_votacion')->votos_centro($municipio, $parroquia);
-	}
-
-	public function parroquias($municipio){
-		$this->municipio = $municipio;
 	}
 
 	public function reporteapi() {

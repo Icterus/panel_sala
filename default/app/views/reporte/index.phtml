@@ -1,10 +1,56 @@
-<div class="span6 offset3">
+<!-- <div class="span6 offset3">
 
 <?php
 
-Utils::grid(array('municipio','listarMunicipio'),TRUE, array('Ver' => 'reporte/parroquias/'));
+//Utils::grid(array('municipio','listarMunicipio'),TRUE, array('Ver' => 'reporte/parroquias/'));
 
 ?>
 
+
+</div> -->
+
+
+<div class="span6 offset3">
+
+<?php
+$t_meta = 0;
+$total = 0;
+?>
+
+  <table class="table stripped table-hover table-striped">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Municipio</th>
+                <th class="text-center">Meta</th>
+                <th class="text-center">Votos</th>
+                <th class="text-center">Detalle</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($lista as $item):
+            ?>
+            <tr>
+                <td><?php echo $item->id; ?></td>
+                <td><?php echo $item->municipio; ?></td>
+                <td class="text-center"><?php echo $item->meta; ?></td>
+  				<td class="text-center"><?php echo $item->votos; ?></td>
+                <td class="text-center"> <?php echo Html::link("reporte/parroquias/$item->id", 'Ver Mas' ) ?></td>
+            </tr>
+
+         <?php 
+
+            //Acumuladores que llevan la cuenta de cada una de las tablas
+            $t_meta += $item->meta;
+             $total +=$item->votos; endforeach; 
+
+        ?>
+            <tr> 
+				<td colspan = "2" ></td>
+				<td class="text-center" ><?php echo $t_meta?></td>
+            	<td class="text-center" ><?php echo $total?></td></tr>
+        </tbody>
+    </table>
 
 </div>
