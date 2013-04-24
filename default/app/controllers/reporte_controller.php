@@ -25,6 +25,7 @@ class ReporteController extends AppController
 
 	public function parroquias($municipio){
 		$this->municipio = $municipio;
+		$this->lista =  Load::model('reportes_centro_votacion')->votos_parroquia($municipio);
 	}
 
 	// reportar

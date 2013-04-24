@@ -34,19 +34,16 @@ class ReportesCentroVotacion extends ActiveRecord {
 
     public function votos_centro($municipio , $parroquia){
 
-        $sql = "SELECT
-                        null as id,
-                        `centro_votacion`.`centro_nuevo` as codigo,
-                        `centro_votacion`.`nombre_centro` as nombre,
-                            count(`informacion`.`voto`) as votos
-                        FROM `psuv_panel`.`centro_votacion`
-                        LEFT JOIN `psuv_panel`.`parroquia`
-                        ON `parroquia`.`municipio_id` = `centro_votacion`.`municipio_id` 
-                               AND `parroquia`.`id_rep` = `centro_votacion`.`parroquia_id`
-                        LEFT JOIN  `psuv_panel`.`informacion`
-                        ON `informacion`.`centro_votacion_id` = `centro_votacion`.`id`
-                        WHERE `centro_votacion`.`municipio_id` = $municipio  AND `parroquia`.`id` = $parroquia
-                            GROUP BY `centro_votacion`.`cod_centro`";
+        $sql = "SELECT null as id,
+                `centro_nuevo` as codigo, 
+                `nombre_centro` as nombre, 
+                `meta` as meta,
+                count(informacion.voto) as votos
+                    FROM `centro_votacion` 
+                LEFT JOIN informacion 
+                ON  `centro_votacion`.id = informacion.centro_votacion_id
+                WHERE municipio_id = $municipio AND `parroquia_id` = $parroquia AND voto = 1
+                GROUP BY `centro_votacion`.cod_centro";
                                 return $this->find_all_by_sql($sql);
 
 
@@ -76,19 +73,23 @@ class ReportesCentroVotacion extends ActiveRecord {
 
         public function votos_parroquia($municipio){
 
-        $sql = "SELECT
-                        null as id,
-                        `centro_votacion`.`centro_nuevo` as codigo,
-                        `centro_votacion`.`nombre_centro` as nombre,
-                            count(`informacion`.`voto`) as votos
-                        FROM `psuv_panel`.`centro_votacion`
-                        LEFT JOIN `psuv_panel`.`parroquia`
-                        ON `parroquia`.`municipio_id` = `centro_votacion`.`municipio_id` 
-                               AND `parroquia`.`id_rep` = `centro_votacion`.`parroquia_id`
-                        LEFT JOIN  `psuv_panel`.`informacion`
-                        ON `informacion`.`centro_votacion_id` = `centro_votacion`.`id`
-                        WHERE `centro_votacion`.`municipio_id` = $municipio 
-                            GROUP BY `centro_votacion`.`municipio_id`";
+        $sql = "SELECT 
+                         null as id , 
+                         centro_votacion.parroquia_id as pq_id,
+                         centro_votacion.municipio_id as mun_id,
+                        (
+                                SELECT parroquia 
+                                FROM parroquia 
+                                WHERE municipio_id = centro_votacion.municipio_id 
+                                    AND parroquia.id_rep = centro_votacion.parroquia_id 
+                        ) as parroquia,
+                        count(informacion.voto) as votos
+                    FROM
+                        informacion
+                            LEFT JOIN centro_votacion 
+                                ON centro_votacion.id = informacion.centro_votacion_id
+                               WHERE centro_votacion.municipio_id = $municipio
+                    GROUP BY   centro_votacion.parroquia_id";
                                 return $this->find_all_by_sql($sql);
 
 

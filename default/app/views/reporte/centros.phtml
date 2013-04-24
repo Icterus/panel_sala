@@ -2,6 +2,7 @@
 
 <?php
 $i = 1;
+$t_meta = 0;
 $total = 0;
 ?>
 
@@ -11,6 +12,7 @@ $total = 0;
                 <th>ID</th>
                 <th>Código</th>
                 <th>Centro de Votacion</th>
+                 <th>Meta</th>
                 <th class="text-center">Votos</th>
             </tr>
         </thead>
@@ -21,13 +23,20 @@ $total = 0;
                 <td><?php echo $i; ?></td>
                 <td><?php echo $item->codigo; ?></td>
   				<td><?php echo $item->nombre; ?></td>
+                <td><?php echo $item->meta; ?></td>
   				<td class="text-center"><?php echo $item->votos; ?></td>
 
             </tr>
 
-            <?php  $i++; $total +=$item->votos; endforeach; ?>
+            <?php  
+                $t_meta+=$item->meta;
+
+            $i++; $total +=$item->votos; 
+
+            endforeach; ?>
             <tr> 
 				<td colspan = "3" ></td>
+                <td class="text-center" ><?php echo $t_meta?></td>
             	<td class="text-center" ><?php echo $total?></td></tr>
         </tbody>
     </table>
