@@ -1,0 +1,17 @@
+<?php echo  Form::open($submit)?>
+<div class="span12 offset4">
+	<a class="primary"><strong><?php echo $mensaje;?></strong> </a>
+	<div class="clearfix"></div>
+	<?php echo Form::hidden('azul', null, '1')?>
+	<div class="input-append">
+		<?php echo Form::text('cedula','class = "input-medium "')?>
+        <button type="submit" id="boton" class="btn">Buscar</button>
+	</div>
+</div>
+<?php echo Form::close()?>
+
+<?php
+if ($asincrono) {
+    View::partial('modal');
+}
+?>
