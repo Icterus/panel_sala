@@ -23,7 +23,7 @@ $total = 0;
                 <th>ID</th>
                 <th>Parroquia</th>
                 <th class="text-center">Votos</th>
-                <th class="text-center">Detalle</th>
+                <th class="text-center hidden-print">Detalle</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +33,7 @@ $total = 0;
                 <td><?php echo $i; ?></td>
                 <td><?php echo $item->parroquia; ?></td>
   				<td class="text-center"><?php echo $item->votos; ?></td>
-  				 <td class="text-center"> <?php echo Html::link("reporte/centros/$item->mun_id/$item->pq_id", 'Ver Mas' ) ?></td>
+  				 <td class="text-center hidden-print"> <?php echo Html::link("reporte/centros/$item->mun_id/$item->pq_id", 'Ver Mas' ) ?></td>
 
             </tr>
 

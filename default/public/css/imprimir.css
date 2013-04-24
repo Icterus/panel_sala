@@ -10,3 +10,23 @@ hr	{
     border-width: 1px 0;
     margin: 20px 0;
 }
+ 
+.navbar, .hidden-print {
+	visibility: hidden;
+	display: none;
+}
+a{
+	text-decoration: none;
+	color:#ccc;
+}
+table {
+	width: 100%;
+	border: thin dotted #c4c4c4;
+		border-collapse: collapse;
+}
+
+th,tr,td{
+	border-bottom:1px solid #ccc;
+	border-left:2px solid #ccc;
+	padding: 1em;
+}
