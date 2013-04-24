@@ -21,6 +21,7 @@
     $('form').on('submit', function(e){
         e.preventDefault();
         var c = $('#cedula').val();
+        var a = $('#azul').val();
         $.post('<?php echo PUBLIC_PATH; ?>buscar/buscar/',
         {
             cedula: c,
@@ -29,6 +30,7 @@
         function(data) {
             if (data.message == 'OK') {
                 idResp = data.id;
+                if ( a == undefined ) { rosa = false; } else { rosa = true; }
                 $('.modal-body #cedula_modal').html(data.cedula);
                 $('.modal-body #nombre_modal').html(data.nombres+' '+data.apellidos);
                 $('.modal-body #centro_modal').html(data.centro_votacion);
@@ -44,6 +46,7 @@
         $.post('<?php echo PUBLIC_PATH; ?>voto/reporte_json/',
         {
             id: idResp,
+            azul: rosa
         },
         function(data) {
             if (data.message == 'OK') {

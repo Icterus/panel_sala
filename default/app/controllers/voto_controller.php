@@ -13,10 +13,17 @@ class votoController extends AppController
 		$this->asincrono = True;
 	}
 
+	public function azul()
+	{
+		$this->mensaje ="Reportar Cedula Azul / Voto";
+		$this->submit = "voto/buscar";
+		$this->asincrono = True;
+	}
+
 	public function reporte_json() {
 		$salida = array('message'=>'error');
 		if ( Input::hasPost('id') ) {
-			$info = Load::model('informacion')->registrarVoto(Input::post('id'));
+			$info = Load::model('informacion')->registrarVoto(Input::post('id'), Input::hasPost('azul'));
 			if ($info) $salida['message']='OK';
 		}
 		print json_encode($salida);
