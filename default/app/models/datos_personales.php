@@ -14,7 +14,7 @@ protected $logger = TRUE;
 
 	 $join = "join: LEFT JOIN centro_votacion ON  centro_votacion.id = datos_personales.centro_votacion_id
 	 				LEFT JOIN informacion ON datos_personales.id = informacion.datos_personales_id";
-	$resultado = $this->find_first('cedula = '.$cedula,$columns, $join);
+	$resultado = $this->find_first('cedula = '.$cedula, $columns, $join);
 
 	if($resultado){
 		return $resultado;

@@ -23,7 +23,7 @@ class BuscarController extends AppController
 			 if (Input::post('tipo') == 'json') {
 			 	$rs = $this->busqueda;
 			 	if ($rs) {
-			 		if ( $this->busqueda->voto == 1 )
+			 		if ( $this->busqueda->voto != "" )
 			 			$salida = array('message' => 'error', 'text' => 'Este persona ya voto');
 			 		else {
 				 		$salida = $this->busqueda;
