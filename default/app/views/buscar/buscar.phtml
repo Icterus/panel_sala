@@ -9,6 +9,7 @@
 			<th>Centro de Votacion</th>
 			<th>Cedula</th>
 			<th>Nombre y Apellido</th>
+			<th>PSUV</th>
 			<th>Telefono</th>
 			<th>Celular</th>
 			<th>Psuv</th>
@@ -22,12 +23,14 @@
 if($busqueda){
 $estado = ($busqueda->voto)?'Activo':'Inactivo';
 $psuv = ($busqueda->psuv)?'Activo':'Inactivo';
+
 print "
 
 		<tr>
 			<td>$busqueda->centro_votacion</td>
 			<td>$busqueda->cedula</td>
 			<td>$busqueda->nombres   $busqueda->apellidos</td>
+			<td>$psuv</td>
 			<td>$busqueda->telefono</td>
 			<td>$busqueda->celular</td>
  			<td class=\"text-center\">

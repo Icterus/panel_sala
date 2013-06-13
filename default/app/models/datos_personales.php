@@ -8,7 +8,7 @@ protected $logger = TRUE;
 	function buscar($cedula){
 
 	$cedula = Filter::get($cedula,'int');
-	 $columns = "columns: datos_personales.id, datos_personales.cedula, datos_personales.nombres,
+	 $columns = "columns: datos_personales.id, datos_personales.cedula, datos_personales.nombres, datos_personales.psuv
 	 			 datos_personales.apellidos , datos_personales.telefono,informacion.estatus,informacion.voto,
 	 			 datos_personales.celular, centro_votacion.id AS centro_id, centro_votacion.nombre_centro as centro_votacion
 	 			 militancia.psuv as psuv";
