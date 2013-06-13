@@ -22,7 +22,7 @@
 
 if($busqueda){
 $estado = ($busqueda->voto)?'Activo':'Inactivo';
-$psuv = ($busqueda->psuv)?'Activo':'Inactivo';
+$psuv = ($busqueda->psuv==1)?'Activo':'Inactivo';
 
 print "
 
