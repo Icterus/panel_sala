@@ -11,6 +11,7 @@
 			<th>Nombre y Apellido</th>
 			<th>Telefono</th>
 			<th>Celular</th>
+			<th>Psuv</th>
 			<th>STATUS</th>
 
 		</tr>
@@ -20,6 +21,7 @@
 
 if($busqueda){
 $estado = ($busqueda->voto)?'Activo':'Inactivo';
+$psuv = ($busqueda->psuv)?'Activo':'Inactivo';
 print "
 
 		<tr>
@@ -28,6 +30,9 @@ print "
 			<td>$busqueda->nombres   $busqueda->apellidos</td>
 			<td>$busqueda->telefono</td>
 			<td>$busqueda->celular</td>
+ 			<td class=\"text-center\">
+ 				<i class=\"icon-circle icon-large $psuv \" title=\"Militancia\"></i>
+ 			</td>
  			<td class=\"text-center\">
  				<i class=\"icon-circle icon-large $estado \" title=\"Cambiar Estado\"></i>
  			</td>
